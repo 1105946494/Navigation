@@ -35,7 +35,14 @@ body {
   position: absolute;
   top: 120px;
   color: #fff;
-  z-index: 100;
+}
+.timeMove {
+  transition: all 0.5s;
+  transform: scale(1.2);
+}
+.timeMoveOut {
+  transition: all 0.5s;
+  transform: scale(1);
 }
 .time > div {
   display: inline;
