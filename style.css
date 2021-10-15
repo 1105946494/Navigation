@@ -1,3 +1,4 @@
+/*基础设置*/
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,6 +15,11 @@ li {
 body {
   overflow: hidden;
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/*主背景*/
 .cover {
   position: absolute;
   width: 100%;
@@ -26,9 +32,13 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+/*时间样式*/
 .globalHeader {
   display: flex;
   justify-content: center;
+}
+.globalHeader > form {
+  border: 0.1px solid #3e5d79;
 }
 .time {
   text-align: center;
@@ -37,11 +47,11 @@ body {
   color: #fff;
 }
 .timeMove {
-  transition: all 0.5s;
+  transition: all 0.25s;
   transform: scale(1.2);
 }
 .timeMoveOut {
-  transition: all 0.5s;
+  transition: all 0.25s;
   transform: scale(1);
 }
 .time > div {
@@ -57,10 +67,11 @@ body {
 .time > .fen {
   margin-left: -10px;
 }
-
+/*输入框样式*/
 .headerInput {
   position: absolute;
   text-align: center;
+  transform: translateX(-50%);
   top: 200px;
   max-width: 80%;
   padding: 13px 15px;
@@ -81,19 +92,64 @@ body {
 .headerInput::-webkit-input-placeholder {
   color: white;
 }
+/*网址样式*/
 .globalMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .siteList {
+  /* border: 3px solid red; */
+  position: absolute;
+  top: 300px;
+  width: 500px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 80%;
 }
 .siteList > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px;
+  /* border: 3px solid blue; */
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.25);
+  box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
 }
 .siteList .site {
+  color: white;
 }
 .siteList .site > .logo {
+  text-align: center;
+  font-size: 40px;
 }
 .siteList .site > .link {
+  width: 70px;
+  word-wrap: break-word;
+  text-align: center;
+  font-size: 10px;
 }
-.siteList .addButten {
+/*新建网址样式*/
+.addButten {
+  font-size: 25px;
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.5;
+  color: white;
+}
+.icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
 }
 /* .cover:hover {
   transform: scale(1.2);
