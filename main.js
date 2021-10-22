@@ -1,12 +1,15 @@
 /*加载时间设置 */
+let time;
 window.onload = function () {
   setTime();
-  let time = setInterval(function () {
+  time = setInterval(function () {
     setTime();
   }, 5000);
-  window.onbeforeunload = function () {
-    window.clearInterval(time);
-  };
+};
+window.onbeforeunload = function () {
+  window.clearInterval(time);
+  let string = JSON.stringify(hashMap);
+  localStorage.setItem("x", string);
 };
 function setTime() {
   let time = new Date();
@@ -35,4 +38,48 @@ $(".time").mousemove(function () {
 $(".time").mouseout(function () {
   $(".time").addClass("timeMoveOut");
 });
-/**********************************/
+/*添加网址并且添加缓存 */
+const $siteList = $(".siteList");
+const $lastLi = $siteList.find("li.last");
+const x = localStorage.getItem("x");
+const xObject = JSON.parse(x);
+const hashMap = xObject || [
+  { logo: "A", url: "https://www.acfun.cn" },
+  { logo: "B", url: "https://www.acfun.cn" },
+];
+const simplifyUrl = (url) => {
+  return url.replace("https://", "").replace("http://", "").replace("www.", "");
+};
+const render = () => {
+  $siteList.find("li:not(.last)").remove();
+  hashMap.forEach((node) => {
+    const $li = $(`<li>
+    <a href="${node.url}"
+      ><div class="site">
+        <div class="logo">${node.logo}</div>
+        <div class="link">${simplifyUrl(node.url)}</div>
+      </div></a
+    >
+  </li>`).insertBefore($lastLi);
+  });
+};
+render();
+$(".addButton").click(function () {
+  let url = window.prompt("请问你要添加的网址是啥？");
+  if (url.indexOf("http") !== 0) {
+    url = "https://" + url;
+  }
+  hashMap.push({
+    logo: simplifyUrl(url)[0].toUpperCase(),
+    url: url,
+  });
+  render();
+  // const $li = $(`<li>
+  // <a href="${url}">
+  // <div class="site">
+  //   <div class="logo">${url[0]}</div>
+  //   <div class="link">${url}</div>
+  // </div>
+  // </a>
+  // </li>`).insertBefore($lastLi);
+});
