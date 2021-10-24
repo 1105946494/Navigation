@@ -38,7 +38,7 @@ $(".time").mousemove(function () {
 $(".time").mouseout(function () {
   $(".time").addClass("timeMoveOut");
 });
-/*添加网址并且添加缓存 */
+/*添加网址并且添加缓存和删除网址 */
 const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
 const x = localStorage.getItem("x");
@@ -48,19 +48,51 @@ const hashMap = xObject || [
   { logo: "B", url: "https://www.acfun.cn" },
 ];
 const simplifyUrl = (url) => {
-  return url.replace("https://", "").replace("http://", "").replace("www.", "");
+  return url
+    .replace("https://", "")
+    .replace("http://", "")
+    .replace("www.", "")
+    .replace(/\/.*/, ""); //删除 / 开头内容
 };
 const render = () => {
   $siteList.find("li:not(.last)").remove();
-  hashMap.forEach((node) => {
-    const $li = $(`<li>
-    <a href="${node.url}"
-      ><div class="site">
+  hashMap.forEach((node, index) => {
+    const $li = $(`
+  <li>
+    <div class="site">
         <div class="logo">${node.logo}</div>
         <div class="link">${simplifyUrl(node.url)}</div>
-      </div></a
-    >
-  </li>`).insertBefore($lastLi);
+        <div class="close">
+          <svg class="icon">
+            <use xlink:href="#icon-chacha"></use>
+          </svg>
+        </div>
+      </div>
+  </li>
+  `).insertBefore($lastLi);
+    $li.click(() => {
+      window.open(node.url);
+    });
+    $li.on("click", ".close", (e) => {
+      e.stopPropagation();
+      hashMap.splice(index, 1);
+      render();
+    });
+    $li.mousemove(function () {
+      $li.removeClass("lastStyleOut");
+      $li.addClass("lastStyle");
+    });
+    $li.mouseout(function () {
+      $li.addClass("lastStyleOut");
+    });
+    $li.mousemove(function () {
+      $li.find(".site").removeClass("moveSiteOut");
+      $li.find(".site").addClass("moveSite");
+    });
+    $li.mouseout(function () {
+      $li.find(".site").removeClass("moveSite");
+      $li.find(".site").addClass("moveSiteOut");
+    });
   });
 };
 render();
@@ -74,12 +106,29 @@ $(".addButton").click(function () {
     url: url,
   });
   render();
-  // const $li = $(`<li>
-  // <a href="${url}">
-  // <div class="site">
-  //   <div class="logo">${url[0]}</div>
-  //   <div class="link">${url}</div>
-  // </div>
-  // </a>
-  // </li>`).insertBefore($lastLi);
+});
+/*监听键盘事件 */
+$(document).on("keypress", (e) => {
+  const { key } = e;
+  for (let i = 0; i < hashMap.length; i++) {
+    if (hashMap[i].logo.toLowerCase() === key) {
+      window.open(hashMap[i].url);
+    }
+  }
+});
+/*网址样式设置 */
+$(".last").mousemove(function () {
+  $(".last").removeClass("lastStyleOut");
+  $(".last").addClass("lastStyle");
+});
+$(".last").mouseout(function () {
+  $(".last").addClass("lastStyleOut");
+});
+
+$(".last").mousemove(function () {
+  $(".addButton").removeClass("moveButtonOut");
+  $(".addButton").addClass("moveButton");
+});
+$(".last").mouseout(function () {
+  $(".addButton").addClass("moveButtonOut");
 });

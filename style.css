@@ -123,6 +123,17 @@ a {
 }
 .siteList .site {
   color: white;
+  position: relative;
+  cursor: pointer;
+}
+.siteList .moveSite {
+  transition: all 0.25s;
+  color: #1e3124;
+  opacity: 0.5;
+}
+.siteList .moveSiteOut {
+  transition: all 0.25s;
+  color: white;
 }
 .siteList .site > .logo {
   text-align: center;
@@ -134,6 +145,18 @@ a {
   text-align: center;
   font-size: 10px;
 }
+.siteList .site > .close {
+  display: none;
+  position: absolute;
+  font-size: 15px;
+  top: 0;
+  right: 0;
+  transform: translateX(-20%);
+  cursor: default;
+}
+.siteList .site:hover > .close {
+  display: inline-block;
+}
 /*新建网址样式*/
 .addButton {
   padding: 20px;
@@ -144,6 +167,25 @@ a {
   align-items: center;
   opacity: 0.5;
   color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+}
+.siteList > .lastStyle {
+  transition: all 0.25s;
+  background-color: rgba(235, 235, 235);
+}
+.siteList > .lastStyleOut {
+  transition: all 0.25s;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+.moveButton {
+  transition: all 0.25s;
+  color: #1e3124;
+}
+.moveButtonOut {
+  transition: all 0.25s;
+  color: white;
 }
 .icon {
   width: 1em;
@@ -152,9 +194,6 @@ a {
   fill: currentColor;
   overflow: hidden;
 }
-/* .cover:hover {
-  transform: scale(1.2);
-} */
 /*媒体查询*/
 @media screen and (max-width: 400px) {
   .siteList > li {
@@ -170,5 +209,8 @@ a {
   }
   .siteList {
     top: 240px;
+  }
+  .siteList .site > .close {
+    display: inline-block;
   }
 }
