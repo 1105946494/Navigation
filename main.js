@@ -78,6 +78,7 @@ const render = () => {
       hashMap.splice(index, 1);
       render();
     });
+    //鼠标滑过样式设置
     $li.mousemove(function () {
       $li.removeClass("lastStyleOut");
       $li.addClass("lastStyle");
@@ -93,6 +94,7 @@ const render = () => {
       $li.find(".site").removeClass("moveSite");
       $li.find(".site").addClass("moveSiteOut");
     });
+    //鼠标滑过样式设置结束
   });
 };
 render();
