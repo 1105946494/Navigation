@@ -27,7 +27,7 @@ a {
   z-index: -1;
   background-image: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.5) 100%),
     radial-gradient(rgba(0, 0, 0, 0) 33%, rgba(0, 0, 0, 0.3) 166%),
-    url(./images/背景.jpg);
+    url(/背景.446a83a0.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -219,3 +219,6 @@ a {
     display: inline-block;
   }
 }
+
+
+/*# sourceMappingURL=/style.e308ff8e.css.map */

@@ -9,7 +9,7 @@ window.onload = function () {
 window.onbeforeunload = function () {
   window.clearInterval(time);
   let string = JSON.stringify(hashMap);
-  localStorage.setItem("x", string);
+  localStorage.setItem("getData", string);
 };
 function setTime() {
   let time = new Date();
@@ -41,7 +41,7 @@ $(".time").mouseout(function () {
 /*添加网址并且添加缓存和删除网址 */
 const $siteList = $(".siteList");
 const $lastLi = $siteList.find("li.last");
-const x = localStorage.getItem("x");
+const x = localStorage.getItem("getData");
 const xObject = JSON.parse(x);
 const hashMap = xObject || [
   { logo: "A", url: "https://www.acfun.cn" },
