@@ -108,6 +108,8 @@ a {
   align-items: center;
   flex-wrap: wrap;
   max-width: 80%;
+  max-height: 377px;
+  overflow: hidden;
 }
 .siteList > li {
   display: flex;
@@ -196,6 +198,9 @@ a {
 }
 /*媒体查询*/
 @media screen and (max-width: 400px) {
+  .siteList {
+    max-height: 400px;
+  }
   .siteList > li {
     margin: 10px;
     width: 80px;
@@ -216,4 +221,4 @@ a {
 }
 
 
-/*# sourceMappingURL=style.bd94e5a3.css.map */
+/*# sourceMappingURL=style.84853e7c.css.map */
